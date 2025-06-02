@@ -35,7 +35,7 @@ export function ProjectsSection() {
         setError(null);
         
         // GitHubユーザー名を設定（実際のユーザー名に変更してください）
-        const username = process.env.NEXT_PUBLIC_GITHUB_USERNAME || "octocat"; // デフォルトはGitHubのマスコット
+        const username = process.env.NEXT_PUBLIC_GITHUB_USERNAME || "tawashii"; // デフォルトをtawashiiに変更
         
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 10000); // 10秒タイムアウト
