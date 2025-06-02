@@ -1,36 +1,168 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# tawashi Portfolio
 
-## Getting Started
+テクニカルライター・QAエンジニアtawashiのポートフォリオサイトです。Next.js 14とTypeScriptを使用して構築されています。
 
-First, run the development server:
+## 特徴
+
+### 🚀 技術スタック
+
+- **フレームワーク**: Next.js 14 (App Router)
+- **言語**: TypeScript
+- **スタイリング**: Tailwind CSS + shadcn/ui
+- **アニメーション**: Framer Motion
+- **アイコン**: Lucide React
+- **テーマ**: next-themes (ダークモード対応)
+
+### ✨ 主な機能
+
+- **レスポンシブデザイン**: モバイルファースト対応
+- **ダークモード**: システム設定連動 + 手動切り替え
+- **スムーススクロール**: ナビゲーション連動
+- **GitHub API連携**: プロジェクト情報の動的取得
+- **PWA対応**: Progressive Web App
+- **アクセシビリティ**: ARIA属性、キーボードナビゲーション
+
+### 📱 セクション構成
+
+1. **Hero Section**: プロフィール紹介とタイピングアニメーション
+2. **About Section**: 詳細なプロフィールと現在の取り組み
+3. **Work Experience Section**: 職歴・経験の詳細（6年間の経歴）
+4. **Skills Section**: 技術スタックとスキルレベル
+5. **Projects Section**: GitHub連携プロジェクト表示
+6. **Contact Section**: SNSリンク（Twitter, Zenn, LAPRAS）
+
+## 開発の開始
+
+### 前提条件
+
+- Node.js 18以上
+- npm または yarn
+
+### インストール
+
+```bash
+npm install
+```
+
+### 開発サーバーの起動
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ブラウザで [http://localhost:3000](http://localhost:3000) を開いてサイトを確認できます。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### ビルド
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+## カスタマイズ
 
-To learn more about Next.js, take a look at the following resources:
+### 環境変数の設定
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. `.env.example` をコピーして `.env.local` を作成：
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+cp .env.example .env.local
+```
 
-## Deploy on Vercel
+2. 以下の環境変数を設定：
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+# GitHubユーザー名（Projects セクションで使用）
+NEXT_PUBLIC_GITHUB_USERNAME=your-github-username
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# ソーシャルメディアリンク
+NEXT_PUBLIC_TWITTER_URL=https://twitter.com/your-username
+NEXT_PUBLIC_BLOG_URL=https://your-blog.com
+NEXT_PUBLIC_EMAIL=your-email@example.com
+```
+
+### PWAアイコンの設定
+
+`public/icons/` フォルダに以下のアイコンを配置：
+
+- `icon-192.png` (192x192px)
+- `icon-512.png` (512x512px)
+
+SVGファイルが提供されているので、オンラインツールやデザインソフトでPNGに変換してください。
+
+### プロフィール画像の追加
+
+1. `public/` フォルダにプロフィール画像を配置：
+   ```
+   public/
+   ├── profile.jpg (推奨サイズ: 400x400px以上の正方形)
+   ```
+
+2. `src/components/sections/about-section.tsx` を更新：
+   ```tsx
+   // プロフィール画像プレースホルダーを以下のように置き換え
+   <div className="relative">
+     <img
+       src="/profile.jpg"
+       alt="tawashi profile"
+       className="w-full h-full object-cover rounded-2xl"
+     />
+   </div>
+   ```
+
+3. 画像の最適化（推奨）：
+   - 形式: JPG, PNG, WebP
+   - サイズ: 400x400px以上
+   - ファイルサイズ: 500KB以下
+
+### コンテンツのカスタマイズ
+
+- **Hero Section**: `src/components/sections/hero-section.tsx` - タイピングアニメーションのテキストを変更
+- **About Section**: `src/components/sections/about-section.tsx` - プロフィール詳細を追加
+- **Skills Section**: `src/components/sections/skills-section.tsx` - スキルとレベルを更新
+- **Contact Section**: `src/components/sections/contact-section.tsx` - 連絡先情報を更新
+
+### サイト情報の更新
+
+- `src/app/layout.tsx`: メタデータ
+- `public/manifest.json`: PWA設定
+
+## デプロイ
+
+### Vercel (推奨)
+
+```bash
+npm run build
+```
+
+Vercelにプッシュするだけで自動デプロイされます。
+
+### その他のプラットフォーム
+
+静的サイトとしてエクスポート:
+
+```bash
+npm run build
+npm run export
+```
+
+## 開発ガイドライン
+
+### コンポーネント設計
+
+- 機能ごとに分割
+- TypeScript厳密型付け
+- 再利用可能な設計
+
+### コーディング規約
+
+- ESLint + Prettier設定済み
+- コンポーネントにはJSDocコメント
+- アクセシビリティ配慮
+
+## ライセンス
+
+MIT License
+
+---
+
+Built with ❤️ using Next.js and TypeScript
