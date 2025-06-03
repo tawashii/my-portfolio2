@@ -233,10 +233,9 @@ export function WorkExperienceSection() {  const experiences: WorkExperience[] =
                             }}
                             viewport={{ once: true }}
                             className="space-y-2"
-                          >
-                            {/* メイン項目 */}
+                          >                            {/* メイン項目 */}
                             <div className="flex items-start">
-                              <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0" />
+                              <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>
                               <p className="text-muted-foreground font-medium leading-relaxed">
                                 {responsibility.main}
                               </p>
@@ -244,10 +243,10 @@ export function WorkExperienceSection() {  const experiences: WorkExperience[] =
                             
                             {/* 詳細項目 */}
                             {responsibility.details && (
-                              <div className="ml-5 space-y-1">
+                              <div className="ml-5 space-y-2">
                                 {responsibility.details.map((detail, detailIndex) => (
                                   <div key={detailIndex} className="flex items-start">
-                                    <div className="w-1 h-1 bg-muted-foreground rounded-full mt-2.5 mr-3 flex-shrink-0" />
+                                    <span className="w-1.5 h-1.5 bg-muted-foreground rounded-full mt-2 mr-3 flex-shrink-0"></span>
                                     <p className="text-muted-foreground text-sm leading-relaxed">
                                       {detail.text}
                                     </p>
