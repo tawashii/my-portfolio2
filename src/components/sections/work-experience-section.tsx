@@ -234,8 +234,11 @@ export function WorkExperienceSection() {  const experiences: WorkExperience[] =
                             viewport={{ once: true }}
                             className="space-y-2"
                           >                            {/* メイン項目 */}
-                            <div className="flex items-start">
-                              <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            <div className="flex items-start mb-3">
+                              <div 
+                                className="w-2 h-2 rounded-full mt-2 mr-3 flex-shrink-0"
+                                style={{ backgroundColor: 'hsl(var(--primary))' }}
+                              ></div>
                               <p className="text-muted-foreground font-medium leading-relaxed">
                                 {responsibility.main}
                               </p>
@@ -243,10 +246,13 @@ export function WorkExperienceSection() {  const experiences: WorkExperience[] =
                             
                             {/* 詳細項目 */}
                             {responsibility.details && (
-                              <div className="ml-5 space-y-2">
+                              <div className="ml-6 space-y-2 mb-4">
                                 {responsibility.details.map((detail, detailIndex) => (
                                   <div key={detailIndex} className="flex items-start">
-                                    <span className="w-1.5 h-1.5 bg-muted-foreground rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                    <div 
+                                      className="w-1.5 h-1.5 rounded-full mt-2 mr-3 flex-shrink-0"
+                                      style={{ backgroundColor: 'hsl(var(--muted-foreground))' }}
+                                    ></div>
                                     <p className="text-muted-foreground text-sm leading-relaxed">
                                       {detail.text}
                                     </p>
