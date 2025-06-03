@@ -1,13 +1,13 @@
-"use client";
+"use client"
 
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"
 
 /**
  * フッターコンポーネント
  * シンプルなコピーライト表示
  */
 export function Footer() {
-  const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear()
 
   return (
     <motion.footer
@@ -46,5 +46,5 @@ export function Footer() {
         </div>
       </div>
     </motion.footer>
-  );
+  )
 }

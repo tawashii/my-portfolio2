@@ -1,20 +1,20 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import { motion } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import * as React from "react"
+import { motion } from "framer-motion"
+import { ExternalLink, Github } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 // GitHub API レスポンスの型定義
 interface GitHubRepo {
-  id: number;
-  name: string;
-  description: string | null;
-  html_url: string;
-  homepage: string | null;
-  language: string | null;
-  stargazers_count: number;
-  topics: string[];
+  id: number
+  name: string
+  description: string | null
+  html_url: string
+  homepage: string | null
+  language: string | null
+  stargazers_count: number
+  topics: string[]
 }
 
 /**
@@ -23,59 +23,61 @@ interface GitHubRepo {
  * TODO: 実際のGitHubユーザー名を設定してリポジトリを取得
  */
 export function ProjectsSection() {
-  const [repos, setRepos] = React.useState<GitHubRepo[]>([]);
-  const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState<string | null>(null);
+  const [repos, setRepos] = React.useState<GitHubRepo[]>([])
+  const [loading, setLoading] = React.useState(true)
+  const [error, setError] = React.useState<string | null>(null)
 
   // GitHub API からリポジトリ情報を取得
   React.useEffect(() => {
     const fetchRepos = async () => {
       try {
-        setLoading(true);
-        setError(null);
-        
+        setLoading(true)
+        setError(null)
+
         // GitHubユーザー名を設定（実際のユーザー名に変更してください）
-        const username = process.env.NEXT_PUBLIC_GITHUB_USERNAME || "tawashii"; // デフォルトをtawashiiに変更
-        
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10秒タイムアウト
-        
+        const username = process.env.NEXT_PUBLIC_GITHUB_USERNAME || "tawashii" // デフォルトをtawashiiに変更
+
+        const controller = new AbortController()
+        const timeoutId = setTimeout(() => controller.abort(), 10000) // 10秒タイムアウト
+
         const response = await fetch(
           `https://api.github.com/users/${username}/repos?sort=updated&per_page=6`,
-          { 
+          {
             signal: controller.signal,
             headers: {
-              'Accept': 'application/vnd.github.v3+json',
-            }
+              Accept: "application/vnd.github.v3+json",
+            },
           }
-        );
+        )
 
-        clearTimeout(timeoutId);
+        clearTimeout(timeoutId)
 
         if (!response.ok) {
           if (response.status === 404) {
-            throw new Error("GitHubユーザーが見つかりません");
+            throw new Error("GitHubユーザーが見つかりません")
           } else if (response.status === 403) {
-            throw new Error("APIの利用制限に達しました");
+            throw new Error("APIの利用制限に達しました")
           }
-          throw new Error(`リポジトリ情報の取得に失敗しました (${response.status})`);
+          throw new Error(
+            `リポジトリ情報の取得に失敗しました (${response.status})`
+          )
         }
 
-        const data = await response.json();
-        
+        const data = await response.json()
+
         // リポジトリが空の場合
         if (!Array.isArray(data) || data.length === 0) {
-          throw new Error("リポジトリが見つかりません");
+          throw new Error("リポジトリが見つかりません")
         }
-        
-        setRepos(data);
+
+        setRepos(data)
       } catch (err) {
-        if (err instanceof Error && err.name === 'AbortError') {
-          setError("リクエストがタイムアウトしました");
+        if (err instanceof Error && err.name === "AbortError") {
+          setError("リクエストがタイムアウトしました")
         } else {
-          setError(err instanceof Error ? err.message : "エラーが発生しました");
+          setError(err instanceof Error ? err.message : "エラーが発生しました")
         }
-        
+
         // エラー時のプレースホルダーデータを表示
         setRepos([
           {
@@ -98,14 +100,14 @@ export function ProjectsSection() {
             stargazers_count: 5,
             topics: ["nodejs", "api"],
           },
-        ]);
+        ])
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
+    }
 
-    fetchRepos();
-  }, []);
+    fetchRepos()
+  }, [])
 
   return (
     <section id="projects" className="py-20 bg-secondary/10">
@@ -123,12 +125,12 @@ export function ProjectsSection() {
               Projects
             </span>
           </h2>
-          
+
           {/* Decorative underline */}
           <div className="flex justify-center mb-6">
             <div className="w-24 h-1 bg-gradient-to-r from-primary to-primary/60 rounded-full"></div>
           </div>
-          
+
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             GitHub連携で実際のプロジェクト情報を表示します。
           </p>
@@ -161,59 +163,60 @@ export function ProjectsSection() {
                 viewport={{ once: true }}
                 className="bg-background/50 rounded-2xl p-6 border border-border/30 hover:shadow-lg transition-shadow"
               >
-              <h3 className="text-xl font-semibold mb-2">{repo.name}</h3>
+                <h3 className="text-xl font-semibold mb-2">{repo.name}</h3>
 
-              <p className="text-muted-foreground mb-4 line-clamp-3">
-                {repo.description || "説明なし"}
-              </p>
+                <p className="text-muted-foreground mb-4 line-clamp-3">
+                  {repo.description || "説明なし"}
+                </p>
 
-              <div className="flex flex-wrap gap-2 mb-4">
-                {repo.topics.slice(0, 3).map((topic) => (
-                  <span
-                    key={topic}
-                    className="px-2 py-1 bg-secondary text-secondary-foreground text-xs rounded"
-                  >
-                    {topic}
-                  </span>
-                ))}
-              </div>
-
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-                  {repo.language && <span>{repo.language}</span>}
-                  <span>★ {repo.stargazers_count}</span>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {repo.topics.slice(0, 3).map((topic) => (
+                    <span
+                      key={topic}
+                      className="px-2 py-1 bg-secondary text-secondary-foreground text-xs rounded"
+                    >
+                      {topic}
+                    </span>
+                  ))}
                 </div>
 
-                <div className="flex space-x-2">
-                  <Button size="sm" variant="outline" asChild>
-                    <a
-                      href={repo.html_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="GitHubで見る"
-                    >
-                      <Github className="h-4 w-4" />
-                    </a>
-                  </Button>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-4 text-sm text-muted-foreground">
+                    {repo.language && <span>{repo.language}</span>}
+                    <span>★ {repo.stargazers_count}</span>
+                  </div>
 
-                  {repo.homepage && (
+                  <div className="flex space-x-2">
                     <Button size="sm" variant="outline" asChild>
                       <a
-                        href={repo.homepage}
+                        href={repo.html_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label="ライブデモを見る"
+                        aria-label="GitHubで見る"
                       >
-                        <ExternalLink className="h-4 w-4" />
+                        <Github className="h-4 w-4" />
                       </a>
                     </Button>
-                  )}
+
+                    {repo.homepage && (
+                      <Button size="sm" variant="outline" asChild>
+                        <a
+                          href={repo.homepage}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="ライブデモを見る"
+                        >
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </motion.div>            ))}
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>
     </section>
-  );
+  )
 }

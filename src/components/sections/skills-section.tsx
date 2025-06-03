@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"
 
 /**
  * Skills セクションコンポーネント
@@ -38,7 +38,7 @@ export function SkillsSection() {
         { name: "kintone", level: 85 },
       ],
     },
-  ];
+  ]
 
   return (
     <section id="skills" className="py-20">
@@ -71,52 +71,53 @@ export function SkillsSection() {
                 viewport={{ once: true }}
                 className="bg-background/50 rounded-2xl p-6 border border-border/30"
               >
-              <h3 className="text-xl font-semibold mb-4 text-center">
-                {category.title}
-              </h3>
-              <div className="space-y-3">
-                {category.skills.map((skill, skillIndex) => (
-                  <motion.div
-                    key={skill.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{
-                      duration: 0.6,
-                      delay: categoryIndex * 0.2 + skillIndex * 0.1,
-                    }}
-                    viewport={{ once: true }}
-                    className="space-y-2"
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="font-medium">{skill.name}</span>
-                    </div>
-                    <div 
-                      className="w-full h-2 bg-muted rounded-full overflow-hidden"
-                      role="progressbar"
-                      aria-valuenow={skill.level}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                      aria-label={`${skill.name}のスキルレベル: ${skill.level}%`}
+                <h3 className="text-xl font-semibold mb-4 text-center">
+                  {category.title}
+                </h3>
+                <div className="space-y-3">
+                  {category.skills.map((skill, skillIndex) => (
+                    <motion.div
+                      key={skill.name}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{
+                        duration: 0.6,
+                        delay: categoryIndex * 0.2 + skillIndex * 0.1,
+                      }}
+                      viewport={{ once: true }}
+                      className="space-y-2"
                     >
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        transition={{
-                          duration: 1.5,
-                          delay: categoryIndex * 0.2 + skillIndex * 0.1 + 0.5,
-                          ease: "easeOut",
-                        }}
-                        viewport={{ once: true }}
-                        className="h-full bg-gradient-to-r from-primary to-primary/80 rounded-full"
-                      />
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>            ))}
+                      <div className="flex items-center justify-between">
+                        <span className="font-medium">{skill.name}</span>
+                      </div>
+                      <div
+                        className="w-full h-2 bg-muted rounded-full overflow-hidden"
+                        role="progressbar"
+                        aria-valuenow={skill.level}
+                        aria-valuemin={0}
+                        aria-valuemax={100}
+                        aria-label={`${skill.name}のスキルレベル: ${skill.level}%`}
+                      >
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${skill.level}%` }}
+                          transition={{
+                            duration: 1.5,
+                            delay: categoryIndex * 0.2 + skillIndex * 0.1 + 0.5,
+                            ease: "easeOut",
+                          }}
+                          viewport={{ once: true }}
+                          className="h-full bg-gradient-to-r from-primary to-primary/80 rounded-full"
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>
     </section>
-  );
+  )
 }

@@ -1,9 +1,9 @@
-"use client";
+"use client"
 
-import { motion } from "framer-motion";
-import { useTypingAnimation } from "@/hooks/use-typing-animation";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import { motion } from "framer-motion"
+import { useTypingAnimation } from "@/hooks/use-typing-animation"
+import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 /**
  * Hero セクションコンポーネント
@@ -16,17 +16,22 @@ export function HeroSection() {
     "Director",
     "QA",
     "Technical Support",
-  ];
+  ]
 
-  const { displayText, isTyping } = useTypingAnimation(typingTexts, 120, 80, 2500);
+  const { displayText, isTyping } = useTypingAnimation(
+    typingTexts,
+    120,
+    80,
+    2500
+  )
 
   // スムーススクロール処理
   const scrollToSection = (sectionId: string) => {
-    const element = document.querySelector(sectionId);
+    const element = document.querySelector(sectionId)
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: "smooth" })
     }
-  };
+  }
   return (
     <section
       id="hero"
@@ -116,11 +121,14 @@ export function HeroSection() {
               <div className="absolute -inset-4 bg-gradient-to-r from-primary/30 via-primary/10 to-secondary/30 rounded-full -z-10 blur-2xl animate-pulse"></div>
               {/* 浮遊するアクセント */}
               <div className="absolute top-4 right-4 w-6 h-6 bg-primary/20 rounded-full animate-bounce"></div>
-              <div className="absolute bottom-8 left-4 w-4 h-4 bg-secondary/30 rounded-full animate-bounce" style={{ animationDelay: '1s' }}></div>
+              <div
+                className="absolute bottom-8 left-4 w-4 h-4 bg-secondary/30 rounded-full animate-bounce"
+                style={{ animationDelay: "1s" }}
+              ></div>
             </div>
           </motion.div>
         </div>
       </div>
     </section>
-  );
+  )
 }

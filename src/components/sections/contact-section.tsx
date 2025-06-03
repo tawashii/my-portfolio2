@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"
 
 /**
  * Contact セクションコンポーネント
@@ -24,7 +24,7 @@ export function ContactSection() {
       url: process.env.NEXT_PUBLIC_LAPRAS_URL || "https://lapras.com",
       description: "技術力や実績を可視化したプロフィールページです",
     },
-  ];
+  ]
 
   return (
     <section id="contact" className="py-20">
@@ -42,7 +42,7 @@ export function ContactSection() {
               Contact
             </span>
           </h2>
-          
+
           {/* Decorative underline */}
           <div className="flex justify-center mb-6">
             <div className="w-24 h-1 bg-gradient-to-r from-primary to-primary/60 rounded-full"></div>
@@ -61,24 +61,25 @@ export function ContactSection() {
                   viewport={{ once: true }}
                   className="group bg-background/50 rounded-2xl p-6 border border-border/30 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300"
                 >
-                <a
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block"
-                >
-                  <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                    {link.name}
-                  </h3>
-                </a>
-                <p className="text-muted-foreground text-sm">
-                  {link.description}
-                </p>
-              </motion.div>                ))}
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                      {link.name}
+                    </h3>
+                  </a>
+                  <p className="text-muted-foreground text-sm">
+                    {link.description}
+                  </p>
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>
       </div>
     </section>
-  );
+  )
 }
