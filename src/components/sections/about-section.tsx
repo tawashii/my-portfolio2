@@ -81,6 +81,35 @@ export function AboutSection() {
                 また、生成AI・AIツールの活用にも強い関心を持ち、業務効率化と品質向上への応用を探求しています。
               </p>
             </div>
+
+            <div className="bg-background/50 rounded-2xl p-6 border border-border/30">
+              <h3 className="text-xl font-semibold mb-2 text-primary">
+                職歴 - テクニカルライター
+              </h3>
+              <p className="text-muted-foreground mb-4">2022年1月 〜 2024年12月</p>
+              <ul className="text-muted-foreground space-y-3">
+                <li className="flex items-start">
+                  <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                  自社製品のマニュアルサイトの執筆・更新、およびディレクションを担当
+                </li>
+                <li className="flex items-start">
+                  <span className="w-1.5 h-1.5 bg-muted-foreground rounded-full mt-2 mr-3 flex-shrink-0 ml-4"></span>
+                  リリーススケジュールに合わせた記事作成計画・進行管理・レビュー業務を実施
+                </li>
+                <li className="flex items-start">
+                  <span className="w-1.5 h-1.5 bg-muted-foreground rounded-full mt-2 mr-3 flex-shrink-0 ml-4"></span>
+                  マークダウン記法とGitを活用した効率的なドキュメント管理体制を構築
+                </li>
+                <li className="flex items-start">
+                  <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                  品質向上のためのレビュープロセス設計・運用により、ドキュメント品質を大幅に改善
+                </li>
+                <li className="flex items-start">
+                  <span className="w-1.5 h-1.5 bg-muted-foreground rounded-full mt-2 mr-3 flex-shrink-0 ml-4"></span>
+                  複数名のライターとの協業体制を構築し、プロジェクト全体の生産性向上に貢献
+                </li>
+              </ul>
+            </div>
           </motion.div>
         </motion.div>
       </div>
