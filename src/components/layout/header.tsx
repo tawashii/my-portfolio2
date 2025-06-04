@@ -101,21 +101,30 @@ export function Header() {
             ))}
           </div>
 
-          {/* テーマトグル（常に表示） */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.7 }}
-            className="flex items-center space-x-2 flex-shrink-0"
-          >
-            <ThemeToggle />
-            {/* モバイル・タブレットメニューボタン */}
-            <div className="lg:hidden">
+          {/* 右側：テーマトグルとモバイルメニュー */}
+          <div className="flex items-center gap-2 flex-shrink-0">
+            {/* テーマトグル（全画面サイズで表示） */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7 }}
+            >
+              <ThemeToggle />
+            </motion.div>
+            
+            {/* ハンバーガーメニューボタン（lg未満のみ） */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              className="lg:hidden"
+            >
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label="メニュー切り替え"
+                className="rounded-full"
               >
                 {isMenuOpen ? (
                   <X className="h-6 w-6" />
@@ -123,8 +132,8 @@ export function Header() {
                   <Menu className="h-6 w-6" />
                 )}
               </Button>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
 
         {/* モバイルメニュー */}
