@@ -80,19 +80,20 @@ export function Header() {
           </motion.div>
 
           {/* デスクトップナビゲーション */}
-          <div className="hidden lg:flex items-center space-x-2 flex-1 justify-center">
+          <div className="hidden lg:flex items-center gap-1 flex-1 justify-center">
             {navItems.map((item, index) => (
               <motion.div
                 key={item.href}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 + index * 0.1 }}
+                className="inline-block"
               >
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => handleNavClick(item.href)}
-                  className="text-foreground/80 hover:text-foreground hover:bg-primary/10 transition-all duration-200 rounded-full px-5 py-2 font-medium"
+                  className="text-foreground/80 hover:text-foreground hover:bg-primary/10 transition-all duration-200 rounded-full px-4 py-2 font-medium whitespace-nowrap"
                 >
                   {item.label}
                 </Button>
@@ -137,13 +138,14 @@ export function Header() {
             transition={{ duration: 0.3 }}
             className="lg:hidden"
           >
-            <div className="px-2 pt-2 pb-3 space-y-2 bg-background/95 backdrop-blur-md rounded-lg mt-2 border">
+            <div className="px-2 pt-2 pb-3 flex flex-wrap gap-2 bg-background/95 backdrop-blur-md rounded-lg mt-2 border">
               {navItems.map((item) => (
                 <Button
                   key={item.href}
                   variant="ghost"
+                  size="sm"
                   onClick={() => handleNavClick(item.href)}
-                  className="w-full justify-start text-foreground/80 hover:text-foreground hover:bg-primary/10 transition-all duration-200"
+                  className="flex-1 min-w-fit text-foreground/80 hover:text-foreground hover:bg-primary/10 transition-all duration-200 rounded-full"
                 >
                   {item.label}
                 </Button>
