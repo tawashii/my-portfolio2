@@ -113,7 +113,7 @@ export function Header() {
             </motion.div>
             
             {/* ハンバーガーメニューボタン（タブレット・モバイルのみ表示） */}
-            <div className="block lg:hidden">
+            <div className="hidden max-lg:block">
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -144,7 +144,7 @@ export function Header() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden"
+            className="hidden max-lg:block"
           >
             <div className="px-2 pt-2 pb-3 flex flex-wrap gap-2 bg-background/95 backdrop-blur-md rounded-lg mt-2 border">
               {navItems.map((item) => (
