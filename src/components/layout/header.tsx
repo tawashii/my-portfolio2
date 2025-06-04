@@ -112,27 +112,28 @@ export function Header() {
               <ThemeToggle />
             </motion.div>
             
-            {/* ハンバーガーメニューボタン（lg未満のみ） */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-              className="lg:hidden"
-            >
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                aria-label="メニュー切り替え"
-                className="rounded-full"
+            {/* ハンバーガーメニューボタン（タブレット・モバイルのみ表示） */}
+            <div className="block lg:hidden">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8 }}
               >
-                {isMenuOpen ? (
-                  <X className="h-6 w-6" />
-                ) : (
-                  <Menu className="h-6 w-6" />
-                )}
-              </Button>
-            </motion.div>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  aria-label="メニュー切り替え"
+                  className="rounded-full"
+                >
+                  {isMenuOpen ? (
+                    <X className="h-6 w-6" />
+                  ) : (
+                    <Menu className="h-6 w-6" />
+                  )}
+                </Button>
+              </motion.div>
+            </div>
           </div>
         </div>
 
