@@ -101,32 +101,30 @@ export function Header() {
             ))}
           </div>
 
-          {/* デスクトップ用テーマトグル */}
+          {/* テーマトグル（常に表示） */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7 }}
-            className="hidden lg:flex flex-shrink-0"
+            className="flex items-center space-x-2 flex-shrink-0"
           >
             <ThemeToggle />
+            {/* モバイル・タブレットメニューボタン */}
+            <div className="lg:hidden">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label="メニュー切り替え"
+              >
+                {isMenuOpen ? (
+                  <X className="h-6 w-6" />
+                ) : (
+                  <Menu className="h-6 w-6" />
+                )}
+              </Button>
+            </div>
           </motion.div>
-
-          {/* モバイル・タブレットメニューボタン */}
-          <div className="lg:hidden flex items-center space-x-2 flex-shrink-0">
-            <ThemeToggle />
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label="メニュー切り替え"
-            >
-              {isMenuOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
-            </Button>
-          </div>
         </div>
 
         {/* モバイルメニュー */}
